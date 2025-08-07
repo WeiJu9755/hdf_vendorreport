@@ -29,7 +29,7 @@ $auth_id = "CASE06";
 if (isset($_GET['pjt']))
 	$pjt = $_GET['pjt'];
 else
-	$pjt = "案件明細報表";
+	$pjt = "合作廠商報表";
 
 
 $tb = "CaseManagement";
@@ -194,7 +194,7 @@ $list_view=<<<EOT
 		</div>
 	</div>
 	<div class="w-100 p-3 text-center">
-		<a class="inline m-2" href="/?ch=casereport_01&fm=casereport" target="_blank" style="width:350px;">
+		<a class="inline m-2" href="/?ch=vendorreport_01&fm=vendorreport" target="_blank" style="width:350px;">
 			<div class="card text-bg-warning" style="width:350px;">
 				<h5 class="card-header size20 weight p-3"><i class="bi bi-journal-text"></i>&nbsp;初評中明細</h5>
 				<div class="card-body text-start p-3 ps-5 size12">
@@ -202,7 +202,7 @@ $list_view=<<<EOT
 				</div>
 			</div>
 		</a>
-		<a class="inline m-2" href="/?ch=casereport_02&fm=casereport" target="_blank" style="width:350px;">
+		<a class="inline m-2" href="/?ch=vendorreport_02&fm=vendorreport" target="_blank" style="width:350px;">
 			<div class="card text-bg-warning" style="width:350px;">
 				<h5 class="card-header size20 weight p-3"><i class="bi bi-journal-text"></i>&nbsp;未訂約明細</h5>
 				<div class="card-body text-start p-3 ps-5 size12">
@@ -210,7 +210,7 @@ $list_view=<<<EOT
 				</div>
 			</div>
 		</a>
-		<a class="inline m-2" href="/?ch=casereport_03&fm=casereport" target="_blank" style="width:350px;">
+		<a class="inline m-2" href="/?ch=vendorreport_03&fm=vendorreport" target="_blank" style="width:350px;">
 			<div class="card text-bg-warning" style="width:350px;">
 				<h5 class="card-header size20 weight p-3"><i class="bi bi-journal-text"></i>&nbsp;已回簽未用印明細</h5>
 				<div class="card-body text-start p-3 ps-5 size12">
@@ -218,7 +218,7 @@ $list_view=<<<EOT
 				</div>
 			</div>
 		</a>
-		<a class="inline m-2" href="/?ch=casereport_04&fm=casereport" target="_blank" style="width:350px;">
+		<a class="inline m-2" href="/?ch=vendorreport_04&fm=vendorreport" target="_blank" style="width:350px;">
 			<div class="card text-bg-warning" style="width:350px;">
 				<h5 class="card-header size20 weight p-3"><i class="bi bi-journal-text"></i>&nbsp;已訂約「未進場」明細</h5>
 				<div class="card-body text-start p-3 ps-5 size12">
@@ -226,7 +226,7 @@ $list_view=<<<EOT
 				</div>
 			</div>
 		</a>
-		<a class="inline m-2" href="/?ch=casereport_05&fm=casereport" target="_blank" style="width:350px;">
+		<a class="inline m-2" href="/?ch=vendorreport_05&fm=vendorreport" target="_blank" style="width:350px;">
 			<div class="card text-bg-warning" style="width:350px;">
 				<h5 class="card-header size20 weight p-3"><i class="bi bi-journal-text"></i>&nbsp;已訂約「已進場」明細</h5>
 				<div class="card-body text-start p-3 ps-5 size12">
@@ -235,16 +235,20 @@ $list_view=<<<EOT
 			</div>
 		</a>
 
-		<a class="inline m-2" href="/?ch=casereport_07&fm=casereport" target="_blank" style="width:350px;">
+		<a role="button" class="btn btn-warning btn-lg p-4 m-2 size20 weight" style="width:350px;" href="/?ch=vendorreport_08&fm=vendorreport" target="_blank"><i class="bi bi-journal-text"></i>&nbsp;對志特採購總表</a>
+
+		<a role="button" class="btn btn-warning btn-lg p-4 m-2 size20 weight" style="width:350px;" href="/?ch=vendorreport_09&fm=vendorreport" target="_blank"><i class="bi bi-journal-text"></i>&nbsp;&nbsp;工程數量表</a>
+
+		<!--<a class="inline m-2" href="/?ch=vendorreport_07&fm=vendorreport" target="_blank" style="width:350px;">
 			<div class="card text-bg-warning" style="width:350px;">
 				<h5 class="card-header size20 weight p-3"><i class="bi bi-journal-text"></i>&nbsp;「已取消」明細</h5>
 				<div class="card-body text-start p-3 ps-5 size12">
 					查詢條件：<br>狀態(1)：取消
 				</div>
 			</div>
-		</a>
+		</a>-->
 
-		<!-- <a role="button" class="btn btn-warning btn-lg p-4 m-2 size20 weight" style="width:350px;" href="/?ch=casereport_06&fm=casereport" target="_blank"><i class="bi bi-journal-text"></i>&nbsp;合作廠商報表</a> -->
+		<!-- <a role="button" class="btn btn-warning btn-lg p-4 m-2 size20 weight" style="width:350px;" href="/?ch=vendorreport_06&fm=vendorreport" target="_blank"><i class="bi bi-journal-text"></i>&nbsp;合作廠商報表</a> -->
 	</div>
 </div>
 EOT;
