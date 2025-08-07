@@ -19,450 +19,539 @@ if (!($detect->isMobile() && !$detect->isTablet())) {
 }
 
 
-$m_location = "/website/smarty/templates/" . $site_db . "/" . $templates;
-$m_pub_modal = "/website/smarty/templates/" . $site_db . "/pub_modal";
-
-
-
+$m_location		= "/website/smarty/templates/".$site_db."/".$templates;
+$m_pub_modal	= "/website/smarty/templates/".$site_db."/pub_modal";
 
 
 //載入公用函數
 @include_once '/website/include/pub_function.php';
 
-@include_once("/website/class/" . $site_db . "_info_class.php");
+@include_once("/website/class/".$site_db."_info_class.php");
 
 
+//檢查是否為管理員及進階會員
+$super_admin = "N";
+$super_advanced = "N";
+$mem_row = getkeyvalue2('memberinfo','member',"member_no = '$memberID'",'admin,advanced');
+$super_admin = $mem_row['admin'];
+$super_advanced = $mem_row['advanced'];
 
-$fm = $_GET['fm'];
-$ch = $_GET['ch'];
-//$project_id = $_GET['project_id'];
-//$auth_id = $_GET['auth_id'];
+$region = $_GET['region'];
+$builder_id = $_GET['builder_id'];
+$contractor_id = $_GET['contractor_id'];
+$ContractingModel = $_GET['ContractingModel'];
+$Handler = $_GET['Handler'];
 
-$case_id = $_GET['case_id'];
-
-// 取得當月日期
-$now = date("Y-m");
-$annual_mooth = isset($_GET['annual_mooth']) ? $_GET['annual_mooth'] : $now;
-
-// 建立起訖日期
-$start = new DateTime($annual_mooth . '-01');
-$end = new DateTime($annual_mooth . '-01');
-$end->modify('last day of this month');
-
-// 把 DateTime 格式轉成字串，用於 SQL
-$start_date = $start->format('Y-m-d');
-$end_date = $end->format('Y-m-d');
-
-$table_date = "";
-
-for ($date = clone $start; $date <= $end; $date->modify('+1 day')) {
-    $formatted_date = $date->format('j');
-    $table_date .= "<th class='text-center text-nowrap vmiddle' style='width:5%;padding: 10px;background-color: #FCE4D6;'>$formatted_date 日</th>\n";
-}
-
-
-
-$getteamclass = "/smarty/templates/$site_db/$templates/sub_modal/admin/attendance_ms/getteamclass.php";
 
 
 $mDB = "";
 $mDB = new MywebDB();
 
-$mDB2 = "";
-$mDB2 = new MywebDB();
+// 取得月份
 
-$mDB3 = "";
-$mDB3 = new MywebDB();
+$annual_mooth = isset($_GET['annual_mooth']) ? $_GET['annual_mooth'] : '';
 
+// 建立起訖日期
+$start = $annual_mooth . "-01";
+$end = date("Y-m-t", strtotime($start)); // 當月最後一天
 
-
-// 工程名稱
-$Qry = "SELECT a.case_id,
-       a.construction_site,
-       b.construction_id AS construction_name,
-       b.status1
-  FROM construction a
-  LEFT JOIN CaseManagement b ON a.case_id = b.case_id
-  WHERE b.status1 = '已簽約'
+//載入區域
+$Qry = "SELECT region
+FROM CaseManagement
+GROUP BY region
+ORDER BY FIELD(region, '北部', '中部', '南部');
 			";
 
 $mDB->query($Qry);
 
 
-$get_construction_dropdown = isset($_GET['construction_name']) ? $_GET['construction_name'] : '';
+$get_region_dropdown = isset($_GET['region']) ? $_GET['region'] : '';
 
-$construction_dropdown = "<select class=\"inline form-select\" name=\"construction_name\" id=\"construction_name\" style=\"width:auto;\">";
-$construction_dropdown .= "<option value=''></option>";
-
-if ($mDB->rowCount() > 0) {
-    while ($row = $mDB->fetchRow(2)) {
-        $case_id = $row['case_id'];
-        $select_construction_name = $row['construction_name'];
-        $selected = ($get_construction_dropdown == $select_construction_name) ? "selected" : "";
-
-        $construction_dropdown .= "<option value='$select_construction_name' $selected>$select_construction_name $case_id</option>";
-    }
-}
-
-$construction_dropdown .= "</select>";
-
-//載入下包商
-$Qry = "SELECT DISTINCT 
-    subcontractor_name, -- 協力下包商名稱
-    subcontractor_id
-FROM subcontractor a
-
-WHERE subcontractor_name IS NOT NULL AND subcontractor_name != '';";
-
-$get_subcontractor_dropdown = isset($_GET['subcontractor_name']) ? $_GET['subcontractor_name'] : '';
-
-$mDB->query($Qry);
-$selected_subcontractor = $_GET['subcontractor_name'] ?? '';
-$select_subcontractor_name = "<select class=\"inline form-select\" name=\"construction_name\" id=\"subcontractor_name\" style=\"width:auto;\">";
-$select_subcontractor_name .= "<option value=''></option>";
+$region_dropdown = "<select class=\"inline form-select\" name=\"region\" id=\"region\" style=\"width:auto;\">";
+$region_dropdown .= "<option></option>";
 
 if ($mDB->rowCount() > 0) {
     while ($row = $mDB->fetchRow(2)) {
-        $subcontractor_name = $row['subcontractor_name'];
-		$subcontractor_id = $row['subcontractor_id'];
-        $selected = ($subcontractor_name == $selected_subcontractor) ? "selected" : "";
-        $select_subcontractor_name .= "<option value='$subcontractor_name' $selected>$subcontractor_name   $subcontractor_id</option>";
+        $select_region = $row['region'];
+        $selected = ($get_region_dropdown == $select_region) ? "selected" : "";
+
+        $region_dropdown .= "<option value='$select_region' $selected>$select_region</option>";
     }
 }
-$select_subcontractor_name .= "</select>";
 
+$region_dropdown .= "</select>";
 
-//載入棟別
-$Qry = "SELECT pro_id,
-       caption AS building -- 棟別
-       FROM items
-       WHERE pro_id = 'building';
-			";
+//載入上包-建商
+$Qry = "SELECT builder_id,builder_name FROM builder ";
 
 $mDB->query($Qry);
 
 
-$get_building_dropdown = isset($_GET['building']) ? $_GET['building'] : '';
+$get_builder_id_dropdown = isset($_GET['builder_id']) ? $_GET['builder_id'] : '';
 
-$building_dropdown = "<select class=\"inline form-select\" name=\"building\" id=\"building\" style=\"width:auto;\">";
-$building_dropdown .= "<option></option>";
+$builder_id_dropdown = "<select class=\"inline form-select\" name=\"builder_id\" id=\"builder_id\" style=\"width:auto;\">";
+$builder_id_dropdown .= "<option></option>";
 
 if ($mDB->rowCount() > 0) {
     while ($row = $mDB->fetchRow(2)) {
-        $select_building = $row['building'];
-        $selected = ($get_building_dropdown == $select_building) ? "selected" : "";
+        $select_builder_id = $row['builder_id'];
+        $select_builder_name = $row['builder_name'];
+        $selected = ($get_builder_id_dropdown == $select_builder_id) ? "selected" : "";
 
-        $building_dropdown .= "<option value='$select_building' $selected>$select_building</option>";
+        $builder_id_dropdown .= "<option value='$select_builder_id' $selected>$select_builder_name</option>";
     }
 }
 
-$building_dropdown .= "</select>";
+$builder_id_dropdown .= "</select>";
 
-// 載入日期
-
-
-
-
-
-$show_disabled = "style=\"pointer-events: none;\"";
-
-
-$show_inquiry = "";
-
-$show_table = "";
-
-
-if (!empty($get_subcontractor_dropdown)) {
-    $Qry = "SELECT DISTINCT 
-        a.case_id,
-        b.construction_id AS construction_name,
-        a.building,
-        a.subcontractor_id,
-        c.subcontractor_name
-    FROM pjprogress_sub a
-    LEFT JOIN CaseManagement b ON a.case_id = b.case_id
-    LEFT JOIN subcontractor c ON a.subcontractor_id = c.subcontractor_id
-    WHERE a.building IS NOT NULL 
-      AND TRIM(a.building) <> ''
-      AND c.subcontractor_name = '$get_subcontractor_dropdown'
-	  AND (
-					(a.delivery_date BETWEEN '$start_date' AND '$end_date') OR
-					(a.deadline_grouting_date BETWEEN '$start_date' AND '$end_date')
-				)";
-} else {
-    $Qry = "SELECT DISTINCT 
-        a.case_id,
-        b.construction_id AS construction_name,
-        a.building
-    FROM pjprogress_sub a
-    LEFT JOIN CaseManagement b ON a.case_id = b.case_id
-    WHERE a.building IS NOT NULL 
-      AND TRIM(a.building) <> ''
-	  AND (
-					(a.delivery_date BETWEEN '$start_date' AND '$end_date') OR
-					(a.deadline_grouting_date BETWEEN '$start_date' AND '$end_date')
-				)";
-
-    if (!empty($get_construction_dropdown)) {
-        $Qry .= " AND b.construction_id = '$get_construction_dropdown'";
-    }
-    if (!empty($get_building_dropdown)) {
-        $Qry .= " AND a.building = '$get_building_dropdown'";
-    }
-
-    $Qry .= " ORDER BY
-        a.case_id,                                     
-        CASE
-            WHEN a.building REGEXP '^[A-Za-z]+$' THEN 0  
-            ELSE 1
-        END,
-        a.building + 0,                               
-        a.building";
-}
+//載入上包-營造廠
+$Qry = "SELECT contractor_id,contractor_name FROM contractor ";
 
 $mDB->query($Qry);
 
 
+$get_contractor_id_dropdown = isset($_GET['contractor_id']) ? $_GET['contractor_id'] : '';
+
+$contractor_id_dropdown = "<select class=\"inline form-select\" name=\"contractor_id\" id=\"contractor_id\" style=\"width:auto;\">";
+$contractor_id_dropdown .= "<option></option>";
 
 if ($mDB->rowCount() > 0) {
-while ($row = $mDB->fetchRow(2)) {
-	$show_case = "";
-	$grouting_schedule = [];
-	$deadline_grouting_day = "";
-	$case_id = $row['case_id'];
-	$construction_name = $row['construction_name'];
-	$building = $row['building'];
+    while ($row = $mDB->fetchRow(2)) {
+        $select_contractor_id = $row['contractor_id'];
+        $select_contractor_name = $row['contractor_name'];
+        $selected = ($get_contractor_id_dropdown == $select_contractor_id) ? "selected" : "";
 
-	$Qry2 = "SELECT a.case_id,
-						a.task_name,
-						a.floor,
-						a.delivery_date,
-						a.deadline_grouting_date,
-						a.building,
-						a.subcontractor_id
-				FROM pjprogress_sub a
-				WHERE a.case_id = '$case_id'
-				AND a.task_name = '灌漿'
-				AND a.building = '$building'
-				
-				AND (
-					(a.delivery_date BETWEEN '$start_date' AND '$end_date') OR
-					(a.deadline_grouting_date BETWEEN '$start_date' AND '$end_date')
-				)";
-	
-	$mDB2->query($Qry2);
-		while ($row2 = $mDB2->fetchRow(2)) {
-						$floor = $row2['floor'];
-						$delivery_date = $row2['delivery_date'];
-						$deadline_grouting_date = $row2['deadline_grouting_date'];
+        $contractor_id_dropdown .= "<option value='$select_contractor_id' $selected>$select_contractor_name</option>";
+    }
+}
 
-						if (!empty($delivery_date) && $stakdelivery_datee_date != "0000-00-00") {
-							$day = date('j', strtotime($delivery_date));
-							$grouting_schedule[$day][] = "$floor 交板";
-						}
+$contractor_id_dropdown .= "</select>";
 
-						if (!empty($deadline_grouting_date) && $deadline_grouting_date != "0000-00-00") {
-							$day = date('j', strtotime($deadline_grouting_date));
-							$grouting_schedule[$day][] = "$floor 灌漿";
-						}
-					}
-					for ($date = clone $start; $date <= $end; $date->modify('+1 day')) {
-							$formatted_day = $date->format('j');
+//承攬模式
+$Qry = "SELECT caption AS ContractingModel FROM items 
+WHERE pro_id = 'ContractingModel'";
 
-							if (isset($grouting_schedule[$formatted_day])) {
-								$items = implode(' ', $grouting_schedule[$formatted_day]);
-								$bg_color = (strpos($items, '交板') !== false && strpos($items, '灌漿') !== false) ? '#14EC80' :
-											(strpos($items, '交板') !== false ? '#ED7D31' : '#FFFF00');
-								$show_case .= "<td class='text-center text-nowrap vmiddle' style='width:5%;padding: 10px;background-color: $bg_color;'>$items</td>";
-							} else {
-								$show_case .= "<td class='text-center text-nowrap vmiddle' style='width:5%;padding: 10px;'></td>";
-							}
-						}
-
-			$Qry3 = "SELECT DISTINCT 
-						a.case_id, 
-						a.builder_id, 
-						c.subcontractor_name,
-						a.works_per_floor, 
-						a.eng_description, 
-						a.construction_days_per_floor
-					FROM overview_building a
-					LEFT JOIN CaseManagement b ON a.case_id = b.case_id
-					LEFT JOIN subcontractor c ON a.builder_id = c.subcontractor_id
-					WHERE a.case_id = '$case_id'
-					AND a.building = '$building'
-					";
-					$mDB3->query($Qry3);
+$mDB->query($Qry);
 
 
-			$subcontractor_info = '';
-			$eng_description_info = '';
-			$construction_days_per_floor_info = '';
+$get_ContractingModel_dropdown = isset($_GET['ContractingModel']) ? $_GET['ContractingModel'] : '';
 
-			while ($row3 = $mDB3->fetchRow(2)) {
-				$subcontractor_name = $row3['subcontractor_name'];
-				$works_per_floor = $row3['works_per_floor'];
-				$eng_description = $row3['eng_description']; 
-				$construction_days_per_floor = $row3['construction_days_per_floor']; // 同上
+$ContractingModel_dropdown = "<select class=\"inline form-select\" name=\"ContractingModel\" id=\"ContractingModel\" style=\"width:auto;\">";
+$ContractingModel_dropdown .= "<option></option>";
 
-				$subcontractor_info .= "<b>$subcontractor_name</b><br>每層工程量: $works_per_floor M<br>";
-				$eng_description_info .= "<b>$eng_description</b><br>";
-				$construction_days_per_floor_info .= "<b>$construction_days_per_floor</b><br>";
-			}
+if ($mDB->rowCount() > 0) {
+    while ($row = $mDB->fetchRow(2)) {
+        $select_ContractingModel = $row['ContractingModel'];
+        $selected = ($get_ContractingModel_dropdown == $select_ContractingModel) ? "selected" : "";
 
-				
-				
-					$show_table .= <<<EOT
-					<tr class="text-center" style="border-bottom: 2px solid #000;">
-						<td class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;">$case_id</td>
-						<td class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;">$construction_name</td>
-						<td class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;">$subcontractor_info</td>
-						<td class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;">$eng_description_info</td>
-						<td class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;">$construction_days_per_floor_info</td>
-						<td class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;">$building</td>
-						$show_case
-					</tr>
+        $ContractingModel_dropdown .= "<option value='$select_ContractingModel' $selected>$select_ContractingModel</option>";
+    }
+}
+
+$ContractingModel_dropdown .= "</select>";
+
+
+//經辦人
+$Qry = "SELECT a.Handler,e.employee_name
+FROM CaseManagement a
+LEFT JOIN employee e ON e.employee_id = a.Handler
+WHERE a.Handler IS NOT NULL AND a.Handler != ''
+GROUP BY a.Handler";
+
+$mDB->query($Qry);
+
+
+$get_Handler_dropdown = isset($_GET['Handler']) ? $_GET['Handler'] : '';
+
+$Handler_dropdown = "<select class=\"inline form-select\" name=\"Handler\" id=\"Handler\" style=\"width:auto;\">";
+$Handler_dropdown .= "<option></option>";
+
+if ($mDB->rowCount() > 0) {
+    while ($row = $mDB->fetchRow(2)) {
+        $select_Handler = $row['Handler'];
+        $select_employee_name = $row['employee_name'];
+        $selected = ($get_Handler_dropdown == $select_Handler) ? "selected" : "";
+
+        $Handler_dropdown .= "<option value='$select_Handler' $selected>$select_employee_name</option>";
+    }
+}
+
+$Handler_dropdown .= "</select>";
+
+
+$Qry="SELECT a.*,b.engineering_name,c.builder_name,d.contractor_name,e.employee_name,f.company_name,f.short_name FROM CaseManagement a
+LEFT JOIN construction b ON b.construction_id = a.construction_id
+LEFT JOIN builder c ON c.builder_id = a.builder_id
+LEFT JOIN contractor d ON d.contractor_id = a.contractor_id
+LEFT JOIN employee e ON e.employee_id = a.Handler
+LEFT JOIN company f ON f.company_id = a.company_id
+WHERE a.status1 = '取消' ";
+
+if (!empty($get_region_dropdown)) {
+        $Qry .= " AND a.region = '$get_region_dropdown'";
+    }
+if (!empty($get_builder_id_dropdown)) {
+        $Qry .= " AND a.builder_id = '$get_builder_id_dropdown'";
+    }
+if (!empty($get_contractor_id_dropdown)) {
+        $Qry .= " AND a.contractor_id = '$get_contractor_id_dropdown'";
+    }
+if (!empty($get_ContractingModel_dropdown)) {
+        $Qry .= " AND a.ContractingModel = '$get_ContractingModel_dropdown'";
+    }
+if (!empty($get_Handler_dropdown)) {
+	$Qry .= " AND a.Handler = '$get_Handler_dropdown'";
+	}
+if (!empty($annual_mooth)) {	
+	$Qry .= " AND a.estimated_arrival_date BETWEEN '$start' AND '$end'";
+	}
+$Qry .="ORDER BY a.auto_seq";
+
+$mDB->query($Qry);
+$casereport_list = "";
+
+$casereport_list.=<<<EOT
+<div class="w-100 m-auto px-3" style="min-height:300px;margin-bottom: 100px;">
+	<div class="w-100">
+		<div class="w-100" style="min-width:1760px;">
 EOT;
-}
 
 
-    $show_inquiry .= <<<EOT
-    <table class="table table-bordered" style="border: 2px solid #000; background-color: #FFFFFF; margin: 0 auto; width: 80%; max-width: 800px;">
-        <thead>
-            <tr class="text-center" style="border-bottom: 2px solid #000;">
-                <th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #FCE4D6;">案件編號</th> 
-                <th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #FCE4D6;">工程名稱</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #FCE4D6;">下包商資料</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #FCE4D6;">施作樓層</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #FCE4D6;">業主要求天數</th>
-                <th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #FCE4D6;">棟別</th>
-				$table_date
-               
-            </tr>
-			$show_table
-        </thead>
-        <tbody class="table-group-divider">
+$total = $mDB->rowCount();
+if ($total > 0) {
+
+$casereport_list.=<<<EOT
+	<table class="table table-bordered border-dark w-100">
+		<thead class="table-light border-dark">
+			<tr style="border-bottom: 1px solid #000;">
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">狀態(1)</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">狀態(2)</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">區域</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">案件編號</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">工程名稱</th>
+				 <th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">上包-建商名稱</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">上包-營造廠名稱</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">連絡人</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">案場位置</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">承攬模式</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">所屬公司</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">經辦人員</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">初評發送日期</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">預計回饋日期</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">初評狀態</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">預計進場日期</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">建物棟數</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">工程量(M2)</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">備註</th>
+				
+				
+				
+				
+				
+			</tr>
+		</thead>
+		<tbody class="table-group-divider">
 EOT;
-	
+	$SUM_total_contract_amt = 0;
+    while ($row=$mDB->fetchRow(2)) {
+		$auto_seq = $row['auto_seq'];
 
-$show_inquiry .= "</tbody></table>";
+		$status1 = $row['status1'];
+		$status2 = $row['status2'];
+		$region = $row['region'];
+		$case_id = $row['case_id'];
+		$construction_id = $row['construction_id'];
+		$engineering_name = $row['engineering_name'];
+		$builder_id = $row['builder_id'];
+		$builder_name = $row['builder_name'];
+		$contractor_id = $row['contractor_id'];
+		$contractor_name = $row['contractor_name'];
+		$contact = $row['contact'];
+		//$site_location = $row['site_location'];
+		$county = $row['county'];
+		$town = $row['town'];
+		$zipcode = $row['zipcode'];
+		$site_location = $county.$town;
+		$ContractingModel = $row['ContractingModel'];
+		$Handler = $row['Handler'];
+		$employee_name = $row['employee_name'];
+
+		// 初評發送日期
+		$first_review_date = $row['first_review_date'];
+		if ($first_review_date == "0000-00-00")
+			$first_review_date = "";
+		
+		// 預計回饋日期
+		$estimated_return_date = $row['estimated_return_date'];
+		if ($estimated_return_date == "0000-00-00")
+			$estimated_return_date = "";
+
+		// 初評狀態
+		$preliminary_status = $row['preliminary_status'];
+
+		//預計進場日期
+		$estimated_arrival_date = $row['estimated_arrival_date'];
+		if ($estimated_arrival_date == "0000-00-00")
+			$estimated_arrival_date = "";
+
+		//實際進場日期
+		// $actual_entry_date = $row['actual_entry_date'];
+		// if ($actual_entry_date == "0000-00-00")
+		// 	$actual_entry_date = "";
+
+		//建物棟數
+		$buildings = $row['buildings'];
+		//工程量(M2)
+		$engineering_qty = $row['engineering_qty'];
+		$fmt_engineering_qty = number_format($engineering_qty);
+
+		// 備註
+		$remark = $row['remark'];
+		//上包合約簽訂時間
+		// $contract_date = $row['contract_date'];
+		// if ($contract_date == "0000-00-00")
+		// 	$contract_date = "";
+		//合約總價(含稅)
+		// $total_contract_amt = $row['total_contract_amt'];
+		// $SUM_total_contract_amt += $total_contract_amt;
+		// $fmt_total_contract_amt = number_format($total_contract_amt);
+		//第一期預收款請款方式
+		// $advance_payment1 = $row['advance_payment1'];
+		//第一期請款日期
+		// $request_date1 = $row['request_date1'];
+		// if ($request_date1 == "0000-00-00")
+		// 	$request_date1 = "";
+		//第二期預收款請款方式
+		// $advance_payment2 = $row['advance_payment2'];
+		//第二期請款日期
+		// $request_date2 = $row['request_date2'];
+		// if ($request_date2 == "0000-00-00")
+		// 	$request_date2 = "";
+		//第三期預收款請款方式
+		// $advance_payment3 = $row['advance_payment3'];
+		//第工期請款日期
+		// $request_date3 = $row['request_date3'];
+		// if ($request_date3 == "0000-00-00")
+		// 	$request_date3 = "";
+		//志特編號
+		// $geto_no = $row['geto_no'];
+		//志特合約簽訂日期
+		// $geto_contract_date = $row['geto_contract_date'];
+		//鋁模材料利舊/新購
+		// $geto_formwork = $row['geto_formwork'];
+		//材料進口日期
+		// $material_import_date = $row['material_import_date'];
+
+		//$makeby = $row['makeby'];
+		//$content = nl2br_skip_html(htmlspecialchars_decode($row['content']));
+
+		$company_id = $row['company_id'];
+		$company_name = $row['short_name'];
+		if (empty($company_name))
+			$company_name = $row['company_name'];
+
+
+$casereport_list.=<<<EOT
+			<tr>
+				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$status1</th>
+				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$status2</th>
+				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$region</th>
+				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$case_id</th>
+				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$construction_id</th>
+				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$builder_name<!--<br>$builder_id  --></th>
+				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$contractor_name<!--<br>$contractor_id  --></th> 
+				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$contact</th>
+				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$site_location</th>
+				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$ContractingModel</th>
+				<th class="text-center text-nowrap" style="width:5%;padding: 10px;">$company_name<br>$company_id</th>
+				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$employee_name</th>
+				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$first_review_date</th>
+				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$estimated_return_date</th>
+				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$preliminary_status</th>
+				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$estimated_arrival_date</th>
+				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$buildings</th>
+				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$fmt_engineering_qty</th>
+				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$remark</th>
+
+			</tr>
+
+EOT;
+
+	}
+
+	$fmt_SUM_total_contract_amt = number_format($SUM_total_contract_amt);
+	$fmt_total = number_format($total);
+
+
+$casereport_list.=<<<EOT
+		</tbody>
+	</table>
+	<div class="size14 weight">案件合計：{$fmt_total}件</div>
+EOT;
+
+
 } else {
-    $show_inquiry = "<div class=\"size16 weight text-center m-3\">查無任何資料！</div>";
+
+$casereport_list.=<<<EOT
+	<div class="size16 weight p-5 text-center">無任何符合查詢的資料</div>
+EOT;
+
 }
 
-// $mDB3->remove();
-// $mDB2->remove();
+$casereport_list.=<<<EOT
+		</div>
+	</div>
+</div>
+EOT;
+
+
 $mDB->remove();
 
-/*
-$Close = getlang("關閉");
-$Print = getlang("列印");
-*/
 
-$show_report = <<<EOT
-<div class="mytable w-100 bg-white p-3">
+$show_report=<<<EOT
+<div class="mytable w-100 bg-white p-3 mt-3">
 	<div class="myrow">
 		<div class="mycell" style="width:20%;">
 		</div>
-		<div class="mycell weight pt-5 text-center">
-			<h3>工程進度月報表</h3>
+		<div class="mycell weight pt-5 pb-4 text-center">
+			<h3>「已取消」明細</h3>
 		</div>
 		<div class="mycell text-end p-2 vbottom" style="width:20%;">
-			<div class="mycell text-end p-2 vbottom" style="width:20%;">
 			<div class="btn-group print"  role="group" style="position:fixed;top: 10px; right:10px;z-index: 9999;">
 				<button id="close" class="btn btn-info btn-lg" type="button" onclick="window.print();"><i class="bi bi-printer"></i>&nbsp;列印</button>
 				<button id="close" class="btn btn-danger btn-lg" type="button" onclick="window.close();"><i class="bi bi-power"></i>&nbsp;關閉</button>
 			</div>
 		</div>
-		</div>
 	</div>
 </div>
-<hr class="style_a m-2 p-0">
+<div class="container-fluid p-3 text-center">
+	<div class="row justify-content-center g-2">
 
-<div class="w-100 p-3 m-auto text-center">
-
-	<div class="inline size12 weight text-nowrap pt-2 vtop mb-2">月份: </div>
-	<div class="inline mb-2">
-		<div class="input-group" id="annualyear" style="width:100%;max-width:180px;">
-			<input type="text" class="form-control" id="annual_mooth" name="annual annual_mooth" placeholder="請輸入年份" aria-describedby="annual_mooth" value="$annual_mooth">
-			<button class="btn btn-outline-secondary input-group-append input-group-addon" type="button" data-target="#annualyear" data-toggle="datetimepicker"><i class="bi bi-calendar"></i></button>
+		<div class="col-auto">
+			<div class="form-label fw-bold">區域:</div>
+			<div>$region_dropdown</div>
 		</div>
-		<script type="text/javascript">
-			$(function () {
-				$('#annualyear').datetimepicker({
-					locale: 'zh-tw'
-					,format:"YYYY-MM"
-					,allowInputToggle: true
-				});
+
+		<div class="col-auto">
+			<div class="form-label fw-bold">上包-建商名稱：</div>
+			<div>$builder_id_dropdown</div>
+		</div>
+
+		<div class="col-auto">
+			<div class="form-label fw-bold">上包-營造廠名稱：</div>
+			<div>$contractor_id_dropdown</div>
+		</div>
+
+		<div class="col-auto">
+			<div class="form-label fw-bold">承攬模式：</div>
+			<div>$ContractingModel_dropdown</div>
+		</div>
+
+		<div class="col-auto">
+			<div class="form-label fw-bold">經辦人員：</div>
+			<div>$Handler_dropdown</div>
+		</div>
+
+		<div class="col-auto">
+			<div class="form-label fw-bold">預計進場月份：</div>
+			<div class="input-group" id="annualyear" style="max-width: 180px;">
+				<input type="text" class="form-control" id="annual_mooth" name="annual annual_mooth" placeholder="請輸入年份" value="$annual_mooth">
+				<button class="btn btn-outline-secondary" type="button" data-target="#annualyear" data-toggle="datetimepicker">
+					<i class="bi bi-calendar"></i>
+				</button>
+			</div>
+		</div>
+
+		<div class="col-auto align-self-end">
+			<button type="button" class="btn btn-success mt-2" onclick="caseselect();">
+				<i class="fas fa-check"></i>&nbsp;查詢
+			</button>
+		</div>
+	</div>
+
+	<!-- DateTime Picker Script -->
+	<script type="text/javascript">
+		$(function () {
+			$('#annualyear').datetimepicker({
+				locale: 'zh-tw',
+				format: "YYYY-MM",
+				allowInputToggle: true
 			});
-		</script>
-		<style>
+		});
+	</script>
+
+	<style>
 		.bootstrap-datetimepicker-widget {
-			z-index: 1050 !important; /* 保證浮在其他元件上 */
+			z-index: 1050 !important;
 			position: absolute !important;
 		}
-		</style>
-	</div>
-	
-	<div class="inline size12 weight text-nowrap vtop mb-2 me-2">工程名稱: $construction_dropdown</div>
-	<div class="inline size12 weight text-nowrap vtop mb-2 me-2">下包商: $select_subcontractor_name</div>
-	<div class="inline size12 weight text-nowrap vtop mb-2 me-2">棟別: $building_dropdown</div>
-	<button type="button" class="btn btn-success" onclick="caseselect();"><i class="fas fa-check"></i>&nbsp;查詢</button>
+	</style>
 </div>
-<div class="w-100 px-3 mb-5">
-	<div class="overflow-auto" style="white-space: nowrap;">
-		<div class="text-center">
-			$show_inquiry
-		</div>
-	</div>
+<div style="margin-bottom: 150px;">
+	$casereport_list
 </div>
-
 EOT;
 
-$show_center = <<<EOT
+$show_center=<<<EOT
+<style>
+
+table.table-bordered {
+	border:1px solid black;
+}
+table.table-bordered > thead > tr > th{
+	border:1px solid black;
+}
+table.table-bordered > tbody > tr > th {
+	border:1px solid black;
+}
+table.table-bordered > tbody > tr > td {
+	border:1px solid black;
+}
+
+@media print {
+	.print {
+		display: none !important;
+	}
+}
+
+</style>
 
 $show_report
 
 <script>
 
-	function caseselect() {
+function caseselect() {
+	var region = $('#region').val();
+	var builder_id = $('#builder_id').val();
+	var contractor_id = $('#contractor_id').val();
+	var ContractingModel = $('#ContractingModel').val();
+	var Handler = $('#Handler').val();
 	var annual_mooth = $('#annual_mooth').val();
-	var construction_name = $('#construction_name').val();
-	var building = $('#building').val();
-	var subcontractor_name = $('#subcontractor_name').val();
 
-    window.location = '/index.php?ch=$ch&fm=$fm'
-					  + '&annual_mooth=' + annual_mooth
-					  + '&construction_name=' + construction_name
-					  + '&subcontractor_name=' + subcontractor_name 
-					  + '&building=' + building
+	const newUrl = '/index.php?ch=$ch&fm=$fm'
+					  + '&region=' + region
+					  + '&builder_id=' + builder_id
+					  + '&contractor_id=' + contractor_id
+					  + '&ContractingModel=' + ContractingModel
+					  + '&Handler=' + Handler
+					  + '&annual_mooth=' + annual_mooth;
 
-    return false;
+	// 導向查詢（保留參數查資料）
+	window.location.href = newUrl;
+
+	// 接著在載入後使用 JS 清掉 input 顯示
+	// 加在頁面載入後：
+	// $('#annual_mooth').val('');
 }
 
+$(function() {
+    // 頁面載入完就清掉
+    $('#annual_mooth').val('');
+});
+	</script>
 
-/*
-//更新主類別
-function getMainSelectVal(){ 
-    $.getJSON("$getmainclass",{site_db:'$site_db'},function(json){ 
-        var main_class = $("#case_list"); 
-		var last_option = main_class.val();
-        $("option",case_list).remove(); //清空原有的選項
-        var option = "<option></option>";
-		main_class.append(option);
-        $.each(json,function(index,array){
-			if (array['caption'] == last_option)
-				option = "<option value='"+array['caption']+"' selected>"+array['caption']+"</option>"; 
-			else
-				option = "<option value='"+array['caption']+"'>"+array['caption']+"</option>"; 
-            main_class.append(option); 
-        }); 
-    }); 
-}
-*/
-
-</script>
 EOT;
+
 
 
 ?>

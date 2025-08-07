@@ -23,55 +23,52 @@ if (isset($_GET['sid']))
 //程式分類
 $ch = empty($_GET['ch']) ? 'default' : $_GET['ch'];
 switch($ch) {
-	case 'vendorreport_01':
+	case 'casereport_01':
 		$sid = "view01";
-		$modal = $m_location."/sub_modal/project/func06/overviewreport_ms/overviewreport_01.php";
+		$modal = $m_location."/sub_modal/project/func01/casereport_ms/casereport_01.php";
 		include $modal;
 		$smarty->assign('show_center',$show_center);
 		break;
-
-	case 'overviewreport_02':
+	case 'casereport_02':
 		$sid = "view01";
-		$modal = $m_location."/sub_modal/project/func06/overviewreport_ms/overviewreport_02.php";
+		$modal = $m_location."/sub_modal/project/func01/casereport_ms/casereport_02.php";
 		include $modal;
 		$smarty->assign('show_center',$show_center);
 		break;
-
-	case 'overviewreport_03':
+	case 'casereport_03':
 		$sid = "view01";
-		$modal = $m_location."/sub_modal/project/func06/overviewreport_ms/overviewreport_03.php";
+		$modal = $m_location."/sub_modal/project/func01/casereport_ms/casereport_03.php";
 		include $modal;
 		$smarty->assign('show_center',$show_center);
 		break;
-	case 'overviewreport_04':
+	case 'casereport_04':
 		$sid = "view01";
-		$modal = $m_location."/sub_modal/project/func06/overviewreport_ms/overviewreport_04.php";
+		$modal = $m_location."/sub_modal/project/func01/casereport_ms/casereport_04.php";
 		include $modal;
 		$smarty->assign('show_center',$show_center);
 		break;
-	case 'overviewreport_05':
+	case 'casereport_05':
 		$sid = "view01";
-		$modal = $m_location."/sub_modal/project/func06/overviewreport_ms/overviewreport_05.php";
+		$modal = $m_location."/sub_modal/project/func01/casereport_ms/casereport_05.php";
 		include $modal;
 		$smarty->assign('show_center',$show_center);
 		break;
-	case 'overviewreport_06':
+	case 'casereport_06':
 		$sid = "view01";
-		$modal = $m_location."/sub_modal/project/func06/overviewreport_ms/overviewreport_06.php";
+		$modal = $m_location."/sub_modal/project/func01/casereport_ms/casereport_06.php";
 		include $modal;
 		$smarty->assign('show_center',$show_center);
 		break;
-	case 'overviewreport_07':
+	case 'casereport_07':
 		$sid = "view01";
-		$modal = $m_location."/sub_modal/project/func06/overviewreport_ms/overviewreport_07.php";
+		$modal = $m_location."/sub_modal/project/func01/casereport_ms/casereport_07.php";
 		include $modal;
 		$smarty->assign('show_center',$show_center);
 		break;
-			
 	default:
 		if (empty($sid))
 			$sid = "mbpjitem";
-		$modal = $m_location."/sub_modal/project/func06/overviewreport_ms/overviewreport.php";
+		$modal = $m_location."/sub_modal/project/func01/casereport_ms/casereport.php";
 		include $modal;
 		break;
 };

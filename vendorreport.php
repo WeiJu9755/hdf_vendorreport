@@ -24,12 +24,12 @@ $fm = $_GET['fm'];
 //$project_id = $_GET['project_id'];
 //$auth_id = $_GET['auth_id'];
 
-$project_id = "202502030001";
-$auth_id = "OV05";
+$project_id = "202412060001";
+$auth_id = "CASE06";
 if (isset($_GET['pjt']))
 	$pjt = $_GET['pjt'];
 else
-	$pjt = "案件基本資料報表";
+	$pjt = "案件明細報表";
 
 
 $tb = "CaseManagement";
@@ -75,14 +75,14 @@ $pubweburl = "//".$domainname;
 
 $fellow_count = 0;
 //取得指定管理人數
-$pjmyfellow_row = getkeyvalue2($site_db."_info","pjmyfellow","web_id = '$web_id' and project_id = '$project_id' and auth_id = '$auth_id' and pro_id = 'overviewreport'","count(*) as fellow_count");
+$pjmyfellow_row = getkeyvalue2($site_db."_info","pjmyfellow","web_id = '$web_id' and project_id = '$project_id' and auth_id = '$auth_id' and pro_id = 'CaseManagement'","count(*) as fellow_count");
 $fellow_count =$pjmyfellow_row['fellow_count'];
 if ($fellow_count == 0)
 	$fellow_count = "";
 
 $pjItemManager = false;
 //檢查是否為指定管理人
-$pjmyfellow_row = getkeyvalue2($site_db."_info","pjmyfellow","web_id = '$web_id' and project_id = '$project_id' and auth_id = '$auth_id' and pro_id = 'overviewreport' and member_no = '$memberID'","count(*) as enable_count");
+$pjmyfellow_row = getkeyvalue2($site_db."_info","pjmyfellow","web_id = '$web_id' and project_id = '$project_id' and auth_id = '$auth_id' and pro_id = 'CaseManagement' and member_no = '$memberID'","count(*) as enable_count");
 $enable_count =$pjmyfellow_row['enable_count'];
 if ($enable_count > 0)
 	$pjItemManager = true;
@@ -152,7 +152,7 @@ if ($cando == "Y") {
 $show_admin_list=<<<EOT
 <div class="text-center">
 	<div class="btn-group me-2 mb-2" role="group">
-		<a role="button" class="btn btn-light" href="javascript:void(0);" onclick="openfancybox_edit('/index.php?ch=fellowlist&project_id=$project_id&auth_id=$auth_id&pro_id=overviewreport&t=指定管理人&fm=base',850,'96%',true);" title="指定管理人"><i class="bi bi-shield-fill-check size14 red inline me-2 vmiddle"></i><div class="inline size12 me-2">指定管理人</div><div class="inline red weight vmiddle">$fellow_count</div></a>
+		<a role="button" class="btn btn-light" href="javascript:void(0);" onclick="openfancybox_edit('/index.php?ch=fellowlist&project_id=$project_id&auth_id=$auth_id&pro_id=CaseManagement&t=指定管理人&fm=base',850,'96%',true);" title="指定管理人"><i class="bi bi-shield-fill-check size14 red inline me-2 vmiddle"></i><div class="inline size12 me-2">指定管理人</div><div class="inline red weight vmiddle">$fellow_count</div></a>
 		<!--
 		<a role="button" class="btn btn-light" href="javascript:void(0);" onclick="openfancybox_edit('/index.php?ch=fellowlist&project_id=$project_id&auth_id=$auth_id&pro_id=alertlist&t=警訊通知對象&fm=base',850,'96%',true);" title="警訊通知對象"><i class="bi bi-bell-fill size14 red inline me-2 vmiddle"></i><div class="inline size12 me-2">警訊通知對象</div><div class="inline red weight vmiddle">$warning_count</div></a>
 		-->
@@ -194,14 +194,57 @@ $list_view=<<<EOT
 		</div>
 	</div>
 	<div class="w-100 p-3 text-center">
-		<a role="button" class="btn btn-warning btn-lg p-4 m-2 size20 weight" style="width:350px;" href="/?ch=overviewreport_01&fm=overviewreport" target="_blank"><i class="bi bi-journal-text"></i>&nbsp;案件基本資料報表</a>
-		<a role="button" class="btn btn-warning btn-lg p-4 m-2 size20 weight" style="width:350px;" href="/?ch=overviewreport_02&fm=overviewreport" target="_blank"><i class="bi bi-journal-text"></i>&nbsp;人力計算報表</a>
-		<a role="button" class="btn btn-warning btn-lg p-4 m-2 size20 weight" style="width:350px;" href="/?ch=overviewreport_03&fm=overviewreport" target="_blank"><i class="bi bi-journal-text"></i>&nbsp;工率報表</a>
-		<a role="button" class="btn btn-warning btn-lg p-4 m-2 size20 weight" style="width:350px;" href="/?ch=overviewreport_04&fm=overviewreport" target="_blank"><i class="bi bi-journal-text"></i>&nbsp;工程人力表</a>
-		<a role="button" class="btn btn-warning btn-lg p-4 m-2 size20 weight" style="width:350px;" href="/?ch=overviewreport_05&fm=overviewreport" target="_blank"><i class="bi bi-journal-text"></i>&nbsp;物資時程表</a>
-		<a role="button" class="btn btn-warning btn-lg p-4 m-2 size20 weight" style="width:350px;" href="/?ch=overviewreport_06&fm=overviewreport" target="_blank"><i class="bi bi-journal-text"></i>&nbsp;物資時程年度表</a>
-		<a role="button" class="btn btn-warning btn-lg p-4 m-2 size20 weight" style="width:350px;" href="/?ch=overviewreport_07&fm=overviewreport" target="_blank"><i class="bi bi-journal-text"></i>&nbsp;工程進度月報表</a>
+		<a class="inline m-2" href="/?ch=casereport_01&fm=casereport" target="_blank" style="width:350px;">
+			<div class="card text-bg-warning" style="width:350px;">
+				<h5 class="card-header size20 weight p-3"><i class="bi bi-journal-text"></i>&nbsp;初評中明細</h5>
+				<div class="card-body text-start p-3 ps-5 size12">
+					查詢條件：<br>狀態(1)：未簽約，狀態(2)：評估中<br>未結案
+				</div>
+			</div>
+		</a>
+		<a class="inline m-2" href="/?ch=casereport_02&fm=casereport" target="_blank" style="width:350px;">
+			<div class="card text-bg-warning" style="width:350px;">
+				<h5 class="card-header size20 weight p-3"><i class="bi bi-journal-text"></i>&nbsp;未訂約明細</h5>
+				<div class="card-body text-start p-3 ps-5 size12">
+					查詢條件：<br>狀態(1)：未簽約，狀態(2)：已報價<br>未結案
+				</div>
+			</div>
+		</a>
+		<a class="inline m-2" href="/?ch=casereport_03&fm=casereport" target="_blank" style="width:350px;">
+			<div class="card text-bg-warning" style="width:350px;">
+				<h5 class="card-header size20 weight p-3"><i class="bi bi-journal-text"></i>&nbsp;已回簽未用印明細</h5>
+				<div class="card-body text-start p-3 ps-5 size12">
+					查詢條件：<br>狀態(1)：未簽約，狀態(2)：已回簽<br>未結案
+				</div>
+			</div>
+		</a>
+		<a class="inline m-2" href="/?ch=casereport_04&fm=casereport" target="_blank" style="width:350px;">
+			<div class="card text-bg-warning" style="width:350px;">
+				<h5 class="card-header size20 weight p-3"><i class="bi bi-journal-text"></i>&nbsp;已訂約「未進場」明細</h5>
+				<div class="card-body text-start p-3 ps-5 size12">
+					查詢條件：<br>狀態(1)：已簽約，狀態(2)：未進場<br>未結案
+				</div>
+			</div>
+		</a>
+		<a class="inline m-2" href="/?ch=casereport_05&fm=casereport" target="_blank" style="width:350px;">
+			<div class="card text-bg-warning" style="width:350px;">
+				<h5 class="card-header size20 weight p-3"><i class="bi bi-journal-text"></i>&nbsp;已訂約「已進場」明細</h5>
+				<div class="card-body text-start p-3 ps-5 size12">
+					查詢條件：<br>狀態(1)：已簽約，狀態(2)：進行中<br>未結案
+				</div>
+			</div>
+		</a>
 
+		<a class="inline m-2" href="/?ch=casereport_07&fm=casereport" target="_blank" style="width:350px;">
+			<div class="card text-bg-warning" style="width:350px;">
+				<h5 class="card-header size20 weight p-3"><i class="bi bi-journal-text"></i>&nbsp;「已取消」明細</h5>
+				<div class="card-body text-start p-3 ps-5 size12">
+					查詢條件：<br>狀態(1)：取消
+				</div>
+			</div>
+		</a>
+
+		<!-- <a role="button" class="btn btn-warning btn-lg p-4 m-2 size20 weight" style="width:350px;" href="/?ch=casereport_06&fm=casereport" target="_blank"><i class="bi bi-journal-text"></i>&nbsp;合作廠商報表</a> -->
 	</div>
 </div>
 EOT;
