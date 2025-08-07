@@ -230,9 +230,9 @@ $casereport_list.=<<<EOT
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">區域</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">案件編號</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">工程名稱</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">上包-建商名稱</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">上包-營造廠名稱</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">連絡人</th>
+				<!--<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">上包-建商名稱</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">上包-營造廠名稱</th>-->
+				<!--<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">連絡人</th>-->
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">案場位置</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">承攬模式</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">所屬公司</th>
@@ -307,9 +307,9 @@ $casereport_list.=<<<EOT
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;">$region</th>
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;">$case_id</th>
 				<th class="text-center" style="width:5%;padding: 10px;">$construction_id</th>
-				<th class="text-center" style="width:5%;padding: 10px;">$builder_name<!--<br>$builder_id --></th>
-				<th class="text-center" style="width:5%;padding: 10px;">$contractor_name<!--<br>$contractor_id --></th>
-				<th class="text-center" style="width:5%;padding: 10px;">$contact</th>
+				<!--<th class="text-center" style="width:5%;padding: 10px;">$builder_name<br>$builder_id </th>
+				<th class="text-center" style="width:5%;padding: 10px;">$contractor_name<br>$contractor_id </th>
+				<th class="text-center" style="width:5%;padding: 10px;">$contact</th>-->
 				<th class="text-center" style="width:5%;padding: 10px;">$site_location</th>
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;">$ContractingModel</th>
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;">$company_name<br>$company_id</th>
@@ -378,7 +378,7 @@ $show_report=<<<EOT
 			<div>$region_dropdown</div>
 		</div>
 
-		<div class="col-auto">
+		<!--<div class="col-auto">
 			<div class="form-label fw-bold">上包-建商名稱：</div>
 			<div>$builder_id_dropdown</div>
 		</div>
@@ -386,7 +386,7 @@ $show_report=<<<EOT
 		<div class="col-auto">
 			<div class="form-label fw-bold">上包-營造廠名稱：</div>
 			<div>$contractor_id_dropdown</div>
-		</div>
+		</div>-->
 
 		<div class="col-auto">
 			<div class="form-label fw-bold">承攬模式：</div>

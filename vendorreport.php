@@ -25,7 +25,7 @@ $fm = $_GET['fm'];
 //$auth_id = $_GET['auth_id'];
 
 $project_id = "202412060001";
-$auth_id = "CASE06";
+$auth_id = "CASE07";
 if (isset($_GET['pjt']))
 	$pjt = $_GET['pjt'];
 else
@@ -75,14 +75,14 @@ $pubweburl = "//".$domainname;
 
 $fellow_count = 0;
 //取得指定管理人數
-$pjmyfellow_row = getkeyvalue2($site_db."_info","pjmyfellow","web_id = '$web_id' and project_id = '$project_id' and auth_id = '$auth_id' and pro_id = 'CaseManagement'","count(*) as fellow_count");
+$pjmyfellow_row = getkeyvalue2($site_db."_info","pjmyfellow","web_id = '$web_id' and project_id = '$project_id' and auth_id = '$auth_id' and pro_id = 'vendorreport'","count(*) as fellow_count");
 $fellow_count =$pjmyfellow_row['fellow_count'];
 if ($fellow_count == 0)
 	$fellow_count = "";
 
 $pjItemManager = false;
 //檢查是否為指定管理人
-$pjmyfellow_row = getkeyvalue2($site_db."_info","pjmyfellow","web_id = '$web_id' and project_id = '$project_id' and auth_id = '$auth_id' and pro_id = 'CaseManagement' and member_no = '$memberID'","count(*) as enable_count");
+$pjmyfellow_row = getkeyvalue2($site_db."_info","pjmyfellow","web_id = '$web_id' and project_id = '$project_id' and auth_id = '$auth_id' and pro_id = 'vendorreport' and member_no = '$memberID'","count(*) as enable_count");
 $enable_count =$pjmyfellow_row['enable_count'];
 if ($enable_count > 0)
 	$pjItemManager = true;
@@ -152,7 +152,7 @@ if ($cando == "Y") {
 $show_admin_list=<<<EOT
 <div class="text-center">
 	<div class="btn-group me-2 mb-2" role="group">
-		<a role="button" class="btn btn-light" href="javascript:void(0);" onclick="openfancybox_edit('/index.php?ch=fellowlist&project_id=$project_id&auth_id=$auth_id&pro_id=CaseManagement&t=指定管理人&fm=base',850,'96%',true);" title="指定管理人"><i class="bi bi-shield-fill-check size14 red inline me-2 vmiddle"></i><div class="inline size12 me-2">指定管理人</div><div class="inline red weight vmiddle">$fellow_count</div></a>
+		<a role="button" class="btn btn-light" href="javascript:void(0);" onclick="openfancybox_edit('/index.php?ch=fellowlist&project_id=$project_id&auth_id=$auth_id&pro_id=vendorreport&t=指定管理人&fm=base',850,'96%',true);" title="指定管理人"><i class="bi bi-shield-fill-check size14 red inline me-2 vmiddle"></i><div class="inline size12 me-2">指定管理人</div><div class="inline red weight vmiddle">$fellow_count</div></a>
 		<!--
 		<a role="button" class="btn btn-light" href="javascript:void(0);" onclick="openfancybox_edit('/index.php?ch=fellowlist&project_id=$project_id&auth_id=$auth_id&pro_id=alertlist&t=警訊通知對象&fm=base',850,'96%',true);" title="警訊通知對象"><i class="bi bi-bell-fill size14 red inline me-2 vmiddle"></i><div class="inline size12 me-2">警訊通知對象</div><div class="inline red weight vmiddle">$warning_count</div></a>
 		-->

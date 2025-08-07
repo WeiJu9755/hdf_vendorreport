@@ -230,9 +230,9 @@ $casereport_list.=<<<EOT
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">區域</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">案件編號</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">工程名稱</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">上包-建商名稱</th>
+				<!--<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">上包-建商名稱</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">上包-營造廠名稱</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">連絡人</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">連絡人</th>-->
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">案場位置</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">承攬模式</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">所屬公司</th>
@@ -241,9 +241,9 @@ $casereport_list.=<<<EOT
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">預計完工日期</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">合約承攬建物棟數</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">合約號碼 <br>(ERP專案代號)</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">合約總價(含稅)</th>
+				<!--<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">合約總價(含稅)</th>-->
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">上包合約<br>簽訂時間</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">第一期預收款<br>請款方式</th>
+				<!--<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">第一期預收款<br>請款方式</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">第一期預收<br>預估日期</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">第一期<br>請款日期</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">第二期預收款<br>請款方式</th>
@@ -251,7 +251,7 @@ $casereport_list.=<<<EOT
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">第二期<br>請款日期</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">第三期預收款<br>請款方式</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">第三期預收<br>預估日期</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">第三期<br>請款日期</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">第三期<br>請款日期</th>-->
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">志特編號</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">志特合約<br>簽訂日期</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">鋁模材料<br>利舊/新購</th>
@@ -349,10 +349,14 @@ EOT;
 		$geto_no = $row['geto_no'];
 		//志特合約簽訂日期
 		$geto_contract_date = $row['geto_contract_date'];
+		if ($geto_contract_date == "0000-00-00")
+			$geto_contract_date = "";
 		//鋁模材料
 		$geto_formwork = $row['geto_formwork'];
 		//材料進口日期
 		$material_import_date = $row['material_import_date'];
+		if ($material_import_date == "0000-00-00")
+			$material_import_date = "";
 
 		//$makeby = $row['makeby'];
 		//$content = nl2br_skip_html(htmlspecialchars_decode($row['content']));
@@ -372,9 +376,9 @@ $casereport_list.=<<<EOT
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$region</th>
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$case_id</th>
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$construction_id</th>
-				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$builder_name<!-- <br>$builder_id --></th>
-				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$contractor_name<!-- <br>$contractor_id --></th>
-				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$contact</th>
+				<!--<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$builder_name<br>$builder_id</th>
+				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$contractor_name<br>$contractor_id </th>
+				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$contact</th>-->
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$site_location</th>
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$ContractingModel</th>
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;">$company_name<br>$company_id</th>
@@ -383,9 +387,9 @@ $casereport_list.=<<<EOT
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$completion_date</th>
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$buildings_contract</th>
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$ERP_no</th>
-				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$fmt_total_contract_amt</th>
+				<!--<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$fmt_total_contract_amt</th>-->
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$contract_date</th>
-				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$advance_payment1</th>
+				<!--<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$advance_payment1</th>
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$estimated_payment_date1</th>
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$request_date1</th>
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$advance_payment2</th>
@@ -393,7 +397,7 @@ $casereport_list.=<<<EOT
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$request_date2</th>
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$advance_payment3</th>
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$estimated_payment_date3</th>
-				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$request_date3</th>
+				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$request_date3</th>-->
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$geto_no</th>
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$geto_contract_date</th>
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$geto_formwork</th>
@@ -408,7 +412,7 @@ EOT;
 	$fmt_SUM_total_contract_amt = number_format($SUM_total_contract_amt); // 最後再格式化一次
 	$casereport_list .=<<<EOT
 			</tbody>
-			<tfoot>
+			<!--<tfoot>
 			<tr>
 				<th colspan="2" class="text-center text-nowrap" style="width:5%;padding: 10px; background-color: #FFF2CC; font-weight: bold; font-size: 16px;">合計:</th>
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px; background-color: #FFF2CC;"></th>
@@ -444,7 +448,7 @@ EOT;
 				<th class="text-center" style="width:5%;padding: 10px; background-color: #FFF2CC;"></th>
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px; background-color: #FFF2CC;"></th>
 			</tr>
-			</tfoot>
+			</tfoot>-->
 	
 EOT;
 	$fmt_total = number_format($total);
@@ -498,7 +502,7 @@ $show_report=<<<EOT
 			<div>$region_dropdown</div>
 		</div>
 
-		<div class="col-auto">
+		<!--<div class="col-auto">
 			<div class="form-label fw-bold">上包-建商名稱：</div>
 			<div>$builder_id_dropdown</div>
 		</div>
@@ -506,7 +510,7 @@ $show_report=<<<EOT
 		<div class="col-auto">
 			<div class="form-label fw-bold">上包-營造廠名稱：</div>
 			<div>$contractor_id_dropdown</div>
-		</div>
+		</div>-->
 
 		<div class="col-auto">
 			<div class="form-label fw-bold">承攬模式：</div>

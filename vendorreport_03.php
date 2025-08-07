@@ -231,9 +231,9 @@ $casereport_list.=<<<EOT
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">區域</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">案件編號</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">工程名稱</th>
-				 <th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">上包-建商名稱</th>
+				<!--<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">上包-建商名稱</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">上包-營造廠名稱</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">連絡人</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">連絡人</th>-->
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">案場位置</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">承攬模式</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">所屬公司</th>
@@ -244,7 +244,7 @@ $casereport_list.=<<<EOT
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">工程量(M2)</th>
 				<!-- <th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">上包合約簽訂時間</th> -->
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">報價回簽日期</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">報價金額(未稅)</th>
+				<!--<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">報價金額(未稅)</th>-->
 			</tr>
 		</thead>
 		<tbody class="table-group-divider">
@@ -360,12 +360,12 @@ $casereport_list.=<<<EOT
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$region</th>
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$case_id</th>
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$construction_id</th>
-				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$builder_name<!--<br>$builder_id--></th>
-				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$contractor_name<!--<br>$contractor_id--></th> 
-				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$contact</th>
+				<!--<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$builder_name<br>$builder_id</th>
+				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$contractor_name<br>$contractor_id</th> 
+				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$contact</th>-->
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$site_location</th>
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$ContractingModel</th>
-				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$company_name</th>
+				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$company_name <br>$company_id</th>
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$employee_name<!--<br>$Handler--></th>
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$estimated_arrival_date</th>
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$geto_formwork</th>
@@ -373,7 +373,7 @@ $casereport_list.=<<<EOT
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$fmt_engineering_qty</th>
 				<!-- <th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$contract_date</th> -->
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$completion_date</th>
-				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$fmt_quotation_amt</th>
+				<!--<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$fmt_quotation_amt</th>-->
 			</tr>
 
 EOT;
@@ -383,7 +383,7 @@ EOT;
 	$fmt_total = number_format($total);
 $casereport_list.=<<<EOT
 		</tbody>
-		<tfoot>
+		<!--<tfoot>
 			<tr>
 				<th colspan="2" class="text-center text-nowrap" style="width:5%;padding: 10px;background-color: #FFF2CC; font-weight: bold; font-size: 16px;">合計:</th>
 
@@ -405,7 +405,7 @@ $casereport_list.=<<<EOT
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;background-color: #FFF2CC;"></th>
 				<th class="text-center" style="width:5%;padding: 10px;background-color: #FFF2CC; font-weight: bold; font-size: 16px;">$fmt_SUM_quotation_amt</th>
 			</tr>
-		</tfoot>
+		</tfoot>-->
 EOT;
 
 
@@ -464,7 +464,7 @@ $show_report=<<<EOT
 			<div>$region_dropdown</div>
 		</div>
 
-		<div class="col-auto">
+		<!--<div class="col-auto">
 			<div class="form-label fw-bold">上包-建商名稱：</div>
 			<div>$builder_id_dropdown</div>
 		</div>
@@ -472,7 +472,7 @@ $show_report=<<<EOT
 		<div class="col-auto">
 			<div class="form-label fw-bold">上包-營造廠名稱：</div>
 			<div>$contractor_id_dropdown</div>
-		</div>
+		</div>-->
 
 		<div class="col-auto">
 			<div class="form-label fw-bold">承攬模式：</div>
