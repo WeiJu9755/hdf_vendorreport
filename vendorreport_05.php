@@ -227,41 +227,41 @@ $casereport_list.=<<<EOT
 	<table class="table table-bordered border-dark w-100">
 		<thead class="table-light border-dark">
 			<tr style="border-bottom: 1px solid #000;">
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">狀態(1)</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">狀態(2)</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">區域</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">案件編號</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">工程名稱</th>
-				<!--<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">上包-建商名稱</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">上包-營造廠名稱</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">連絡人</th>-->
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">案場位置</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">承攬模式</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">所屬公司</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">經辦人員</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">預計進場日期</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">預計完工日期</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">合約承攬建物棟數</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">合約號碼 <br>(ERP專案代號)</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">實際進場日期</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">實際完工日期</th>
-				<!--<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">建物棟數</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">工程量(M2)</th> -->
-				<!--<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">合約總價(含稅)</th>-->
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">上包合約<br>簽訂時間</th>
-				<!--<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">第一期預收款<br>請款方式</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">第一期預收<br>預估日期</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">第一期<br>請款日期</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">第二期預收款<br>請款方式</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">第二期預收<br>預估日期</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">第二期<br>請款日期</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">第三期預收款<br>請款方式</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">第三期預收<br>預估日期</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">第三期<br>請款日期</th>-->
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">志特編號</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">志特合約<br>簽訂日期</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">鋁模材料<br>利舊/新購</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">材料進口日期</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">狀態(1)</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">狀態(2)</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">區域</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">案件編號</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">工程名稱</th>
+				<!--<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">上包-建商名稱</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">上包-營造廠名稱</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">連絡人</th>-->
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">案場位置</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">承攬模式</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">所屬公司</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">經辦人員</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">預計進場日期</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">預計完工日期</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">合約承攬建物棟數</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">合約號碼 <br>(ERP專案代號)</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">實際進場日期</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">實際完工日期</th>
+				<!--<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">建物棟數</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">工程量(M2)</th> -->
+				<!--<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">合約總價(含稅)</th>-->
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">上包合約<br>簽訂時間</th>
+				<!--th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">第一期預收款<br>請款方式</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">第一期預收<br>預估日期</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">第一期<br>請款日期</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">第二期預收款<br>請款方式</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">第二期預收<br>預估日期</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">第二期<br>請款日期</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">第三期預收款<br>請款方式</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">第三期預收<br>預估日期</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">第三期<br>請款日期</th>-->
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">志特編號</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">志特合約<br>簽訂日期</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">鋁模材料<br>利舊/新購</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">材料進口日期</th>
 			</tr>
 		</thead>
 		<tbody class="table-group-divider">
@@ -379,6 +379,7 @@ EOT;
 		if ($material_import_date == "0000-00-00")	
 			$material_import_date = "";
 
+
 		//$makeby = $row['makeby'];
 		//$content = nl2br_skip_html(htmlspecialchars_decode($row['content']));
 
@@ -458,7 +459,7 @@ $casereport_list.=<<<EOT
 				<th class="text-center" style="width:5%;padding: 10px;background-color: #FFF2CC;"></th>
 				<th class="text-center" style="width:5%;padding: 10px;background-color: #FFF2CC;"></th>
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;background-color: #FFF2CC"></th>
-				<th class="text-center" style="width:5%;padding: 10px; background-color: #FFF2CC; font-weight: bold; font-size: 16px;">$fmt_SUM_total_contract_amt</th>
+				<th class="text-center" style="width:5%;padding: 10px; background-color: #FFF2CC; font-weight: bold; font-size: 16px;"></th>
 				<th class="text-center" style="width:5%;padding: 10px;background-color: #FFF2CC;"></th>
 				
 				<th class="text-center" style="width:5%;padding: 10px;background-color: #FFF2CC;"></th>
@@ -509,7 +510,7 @@ $show_report=<<<EOT
 		<div class="mycell" style="width:20%;">
 		</div>
 		<div class="mycell weight pt-5 pb-4 text-center">
-			<h3>已訂約「已進場」明細</h3>
+			<h3>已訂約「已進場」明細(廠商)</h3>
 		</div>
 		<div class="mycell text-end p-2 vbottom" style="width:20%;">
 			<div class="btn-group print"  role="group" style="position:fixed;top: 10px; right:10px;z-index: 9999;">

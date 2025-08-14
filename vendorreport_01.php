@@ -225,25 +225,25 @@ $casereport_list.=<<<EOT
 	<table class="table table-bordered border-dark w-100">
 		<thead class="table-light border-dark">
 			<tr style="border-bottom: 1px solid #000;">
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">狀態(1)</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">狀態(2)</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">區域</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">案件編號</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">工程名稱</th>
-				<!--<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">上包-建商名稱</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">上包-營造廠名稱</th>-->
-				<!--<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">連絡人</th>-->
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">案場位置</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">承攬模式</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">所屬公司</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">經辦人員</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">建物棟數</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">初評發送日期</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">預計回饋日期</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">初評狀態</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">備註</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">報價日期</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">預計進場日期</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">狀態(1)</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">狀態(2)</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">區域</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">案件編號</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">工程名稱</th>
+				<!-- <th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">上包-建商名稱</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">上包-營造廠名稱</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">連絡人</th>-->
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">案場位置</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">承攬模式</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">所屬公司</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">經辦人員</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">建物棟數</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">初評發送日期</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">預計回饋日期</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">初評狀態</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">備註</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">報價日期</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">預計進場日期</th>
 			</tr>
 		</thead>
 		<tbody class="table-group-divider">
@@ -360,7 +360,7 @@ $show_report=<<<EOT
 		<div class="mycell" style="width:20%;">
 		</div>
 		<div class="mycell weight pt-5 pb-4 text-center">
-			<h3>初評中明細</h3>
+			<h3>初評中明細(廠商)</h3>
 		</div>
 		<div class="mycell text-end p-2 vbottom" style="width:20%;">
 			<div class="btn-group print"  role="group" style="position:fixed;top: 10px; right:10px;z-index: 9999;">

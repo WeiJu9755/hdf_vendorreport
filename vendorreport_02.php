@@ -226,28 +226,28 @@ $casereport_list.=<<<EOT
 	<table class="table table-bordered border-dark w-100">
 		<thead class="table-light border-dark">
 			<tr style="border-bottom: 1px solid #000;">
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">狀態(1)</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">狀態(2)</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">區域</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">案件編號</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">工程名稱</th>
-				<!--<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">上包-建商名稱</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">上包-營造廠名稱</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">連絡人</th>-->
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">案場位置</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">承攬模式</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">所屬公司</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">經辦人員</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">建物棟數</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">工程量(M2)</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">標準層模板數量(M2)</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">屋突層模板數量(M2)</th>
-				<!--<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">材料金額</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">代工費用</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">報價金額(未稅)</th>-->
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">報價單是否送出</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">報價日期</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #CBF3FC;">預計進場日期</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">狀態(1)</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">狀態(2)</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">區域</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">案件編號</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">工程名稱</th>
+				<!--<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">上包-建商名稱</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">上包-營造廠名稱</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">連絡人</th>-->
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">案場位置</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">承攬模式</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">所屬公司</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">經辦人員</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">建物棟數</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">工程量(M2)</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">標準層模板數量(M2)</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">屋突層模板數量(M2)</th>
+				<!--<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">材料金額</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">代工費用</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">報價金額(未稅)</th>-->
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">報價單是否送出</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">報價日期</th>
+				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">預計進場日期</th>
 			</tr>
 		</thead>
 		<tbody class="table-group-divider">
@@ -344,9 +344,9 @@ EOT;
 				if ($days >= 30) {
 					$bgcolor = "background-color:#A4C2F4;color:#000000;"; // 藍底黑字
 				} elseif ($days >= 14) {
-					$bgcolor = "background-color:#FFFF00;color:#000000;"; // 黃底黑字
+					$bgcolor = "background-color:#FFE599;color:#000000;"; // 黃底黑字
 				} else {
-					$bgcolor = "background-color:#FFFFFF;color:#FF0000;"; // 白底紅字
+					$bgcolor = "background-color:#FFFFFF;color:#000000;"; // 白底黑字
 				}
 			// } else {
 			// 	// 如果 quotation_date 是未來，仍視為未滿14天 → 白底紅字
@@ -381,9 +381,9 @@ $casereport_list.=<<<EOT
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$fmt_engineering_qty</th>
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$fmt_std_layer_template_qty</th>
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$fmt_roof_protrusion_template_qty</th>
-				<!--<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$fmt_material_amt</th>
-				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$fmt_OEM_cost</th>
-				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$fmt_quotation_amt</th>-->
+				<!--<th class="text-center" style="width:5%;padding: 10px;$bgcolor"></th>
+				<th class="text-center" style="width:5%;padding: 10px;$bgcolor"></th>
+				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">t</th>-->
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$quotation_sended</th>
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$quotation_date</th>
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$estimated_arrival_date</th>
@@ -410,18 +410,20 @@ $casereport_list.=<<<EOT
 				
 				
 				<th class="text-center" style="width:5%;padding: 10px;background-color: #FFF2CC"></th>
-				
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;background-color: #FFF2CC"></th>
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;background-color: #FFF2CC"></th>
+				<th class="text-center text-nowrap" style="width:5%;padding: 10px;background-color: #FFF2CC"></th>
+				<th class="text-center text-nowrap" style="width:5%;padding: 10px;background-color: #FFF2CC"></th>
+				<th class="text-center text-nowrap" style="width:5%;padding: 10px;background-color: #FFF2CC"></th>
 				<th class="text-center" style="width:5%;padding: 10px;background-color: #FFF2CC"></th>
 				<th class="text-center" style="width:5%;padding: 10px;background-color: #FFF2CC"></th>
 				<th class="text-center" style="width:5%;padding: 10px;background-color: #FFF2CC"></th>
 				<th class="text-center" style="width:5%;padding: 10px;background-color: #FFF2CC"></th>
 				<th class="text-center" style="width:5%;padding: 10px;background-color: #FFF2CC"></th>
 				<th class="text-center" style="width:5%;padding: 10px;background-color: #FFF2CC"></th>
-				<th class="text-center" style="width:5%;padding: 10px;background-color: #FFF2CC; font-weight: bold; font-size: 16px;">$fmt_SUM_material_amt </th>
-				<th class="text-center" style="width:5%;padding: 10px;background-color: #FFF2CC; font-weight: bold; font-size: 16px;">$fmt_SUM_OEM_cost</th>
-				<th class="text-center" style="width:5%;padding: 10px;background-color: #FFF2CC; font-weight: bold; font-size: 16px;">$fmt_SUM_quotation_amt</th>
+				<th class="text-center" style="width:5%;padding: 10px;background-color: #FFF2CC; font-weight: bold; font-size: 16px;"> </th>
+				<th class="text-center" style="width:5%;padding: 10px;background-color: #FFF2CC; font-weight: bold; font-size: 16px;"></th>
+				<th class="text-center" style="width:5%;padding: 10px;background-color: #FFF2CC; font-weight: bold; font-size: 16px;"></th>
 				<th class="text-center" style="width:5%;padding: 10px;background-color: #FFF2CC"></th>
 				<th class="text-center text-nowrap" style="width:5%;padding: 10px;background-color: #FFF2CC"></th>
 				
@@ -461,8 +463,8 @@ $show_report=<<<EOT
 		<div class="mycell" style="width:20%;">
 		</div>
 		<div class="mycell weight pt-5 pb-4 text-center">
-			<h3>未訂約明細</h3>
-			<div class="size12 weight text-center mt-3"><!--<span class="red">紅字</span>-未滿14天、--><span style="background-color:#FFFF00;color:black;">黃底</span>-已滿14天、<span style="background-color:#A4C2F4;color:black;">藍底</span>-已滿30天</div>
+			<h3>未訂約明細(廠商)</h3>
+			<div class="size12 weight text-center mt-3"><span class="black">黑字-未滿14天、</span><span style="background-color:#FFE599;color:black;">黃底</span>-已滿14天、<span style="background-color:#A4C2F4;color:black;">藍底</span>-已滿30天</div>
 		</div>
 		<div class="mycell text-end p-2 vbottom" style="width:20%;">
 			<div class="btn-group print"  role="group" style="position:fixed;top: 10px; right:10px;z-index: 9999;">
