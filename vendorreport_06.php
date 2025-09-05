@@ -47,7 +47,7 @@ LEFT JOIN construction b ON b.construction_id = a.construction_id
 LEFT JOIN builder c ON c.builder_id = a.builder_id
 LEFT JOIN contractor d ON d.contractor_id = a.contractor_id
 LEFT JOIN employee e ON e.employee_id = a.Handler
-WHERE    a.ContractingModel IN ('連工帶料(UH)', '材料買賣(BH)')
+WHERE    a.ContractingModel IN ('連工帶料(UH)', '材料買賣(BH)','租賃(RH)')
     AND (
         (a.status1 = '已簽約')
         OR

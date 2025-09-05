@@ -237,7 +237,7 @@ $list_view=<<<EOT
 
 		<a role="button" class="btn btn-warning btn-lg p-4 m-2 size20 weight" style="width:350px;" href="/?ch=vendorreport_06&fm=vendorreport" target="_blank"><i class="bi bi-journal-text"></i>&nbsp;對志特採購總表</a>
 
-		<a role="button" class="btn btn-warning btn-lg p-4 m-2 size20 weight" style="width:350px;" href="/?ch=vendorreport_07&fm=vendorreport" target="_blank"><i class="bi bi-journal-text"></i>&nbsp;&nbsp;工程數量表</a>
+		<!--<a role="button" class="btn btn-warning btn-lg p-4 m-2 size20 weight" style="width:350px;" href="/?ch=vendorreport_07&fm=vendorreport" target="_blank"><i class="bi bi-journal-text"></i>&nbsp;&nbsp;工程數量表</a>-->
 
 		<!--<a class="inline m-2" href="/?ch=vendorreport_07&fm=vendorreport" target="_blank" style="width:350px;">
 			<div class="card text-bg-warning" style="width:350px;">

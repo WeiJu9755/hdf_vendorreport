@@ -246,8 +246,7 @@ $casereport_list.=<<<EOT
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">代工費用</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">報價金額(未稅)</th>-->
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">報價單是否送出</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">報價日期</th>
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">預計進場日期</th>
+				
 			</tr>
 		</thead>
 		<tbody class="table-group-divider">
@@ -330,29 +329,7 @@ EOT;
 		// 取得今天的日期
 		$today = new DateTime("now");
 
-		// 定義目標日期
-		if ($estimated_arrival_date != "0000-00-00" && $quotation_date != "0000-00-00") {
-			$targetDate = new DateTime($quotation_date);
-			$today = new DateTime("now");
-
-			// 計算差異
-			$interval = $today->diff($targetDate);
-			$days = $interval->days;
-
-			// 判斷是否為過去（invert = 1 表示 targetDate < today）
-			if ($interval->invert) {
-				if ($days >= 30) {
-					$bgcolor = "background-color:#A4C2F4;color:#000000;"; // 藍底黑字
-				} elseif ($days >= 14) {
-					$bgcolor = "background-color:#FFE599;color:#000000;"; // 黃底黑字
-				} else {
-					$bgcolor = "background-color:#FFFFFF;color:#000000;"; // 白底黑字
-				}
-			// } else {
-			// 	// 如果 quotation_date 是未來，仍視為未滿14天 → 白底紅字
-			// 	$bgcolor = "background-color:#FFFFFF;color:#FF0000;";
-			}
-		}
+		
 
 
 
@@ -385,8 +362,7 @@ $casereport_list.=<<<EOT
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor"></th>
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">t</th>-->
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$quotation_sended</th>
-				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$quotation_date</th>
-				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$estimated_arrival_date</th>
+				
 			</tr>
 				
 
@@ -464,7 +440,7 @@ $show_report=<<<EOT
 		</div>
 		<div class="mycell weight pt-5 pb-4 text-center">
 			<h3>未訂約明細(廠商)</h3>
-			<div class="size12 weight text-center mt-3"><span class="black">黑字-未滿14天、</span><span style="background-color:#FFE599;color:black;">黃底</span>-已滿14天、<span style="background-color:#A4C2F4;color:black;">藍底</span>-已滿30天</div>
+			
 		</div>
 		<div class="mycell text-end p-2 vbottom" style="width:20%;">
 			<div class="btn-group print"  role="group" style="position:fixed;top: 10px; right:10px;z-index: 9999;">

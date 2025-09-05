@@ -243,7 +243,7 @@ $casereport_list.=<<<EOT
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">建物棟數</th>
 				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">工程量(M2)</th>
 				<!-- <th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">上包合約簽訂時間</th>-->
-				<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;">報價回簽日期</th>
+				<!--<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;">報價回簽日期</th>-->
 				<!--<th class="text-center text-nowrap vmiddle" style="width:5%;padding: 10px;background-color: #D4F8D4;">報價金額(未稅)</th>-->
 			</tr>
 		</thead>
@@ -326,31 +326,6 @@ if ($estimated_arrival_date != "0000-00-00" && $completion_date != "0000-00-00")
     $completion = new DateTime($completion_date);
     $today = new DateTime("now");
 
-    // 條件 1：已超過預計進場日 → 白底黑字（最高優先）
-    if ($today > $arrival_date) {
-        $bgcolor = "background-color:#FFFFFF;color:#000000;";
-    } else {
-        // 條件 2：進場日距今 180 天內 → 紅底黑字（優先於報價邏輯）
-        $interval_to_arrival = $today->diff($arrival_date);
-        $days_to_arrival = (int)$interval_to_arrival->format("%r%a");
-
-        if ($days_to_arrival >= 0 && $days_to_arrival <= 180) {
-            $bgcolor = "background-color:#FFCCCC;color:#000000;";
-        } else {
-            // 報價回簽邏輯（僅在未符合紅底條件時才判斷）
-            $date_plus_21 = (clone $completion)->modify("+21 days");
-            $date_plus_42 = (clone $completion)->modify("+42 days");
-
-            // 條件 4：報價回簽 +42 天 → 藍底黑字（蓋過黃底）
-            if ($today > $date_plus_42) {
-                $bgcolor = "background-color:#A4C2F4;color:#000000;";
-            }
-            // 條件 3：報價回簽 +21 天 → 黃底黑字
-            else if ($today > $date_plus_21) {
-                $bgcolor = "background-color:#FFE599;color:#000000;";
-            }
-        }
-    }
 }
 
 $casereport_list.=<<<EOT
@@ -372,7 +347,7 @@ $casereport_list.=<<<EOT
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$buildings</th>
 				<th class="text-center" style="width:5%;padding: 10px;$bgcolor">$fmt_engineering_qty</th>
 				<!-- <th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor">$contract_date</th>-->
-				<th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor"></th>
+				<!-- <th class="text-center text-nowrap" style="width:5%;padding: 10px;$bgcolor"></th>-->
 				<!--<th class="text-center" style="width:5%;padding: 10px;$bgcolor"></th>-->
 			</tr>
 
@@ -441,12 +416,7 @@ $show_report=<<<EOT
 		</div>
 		<div class="mycell weight pt-5 pb-4 text-center">
 			<h3>已回簽未用印明細(廠商)</h3>
-			<div class="size12 weight text-center mt-3">
-			<span>依報價回簽日期+21天後為<span style="color:black;background-color:#FFE599;">黃底</span>，+42天後為<span style="color:black;background-color:#A4C2F4;">藍底</span>
-			</div>
-			<div class="size12 weight text-center mt-3">
-			<span>依預計進場日期前180天內為<span style="color:black;background-color:#FFCCCC;">紅底</span></span>
-			</div>
+			
 		</div>
 		<div class="mycell text-end p-2 vbottom" style="width:20%;">
 			<div class="btn-group print"  role="group" style="position:fixed;top: 10px; right:10px;z-index: 9999;">
