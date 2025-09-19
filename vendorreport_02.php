@@ -49,10 +49,10 @@ $mDB = new MywebDB();
 
 // 取得月份
 
-$annual_mooth = isset($_GET['annual_mooth']) ? $_GET['annual_mooth'] : '';
+$annual_month = isset($_GET['annual_month']) ? $_GET['annual_month'] : '';
 
 // 建立起訖日期
-$start = $annual_mooth . "-01";
+$start = $annual_month . "-01";
 $end = date("Y-m-t", strtotime($start)); // 當月最後一天
 
 //載入區域
@@ -204,7 +204,7 @@ if (!empty($get_ContractingModel_dropdown)) {
 if (!empty($get_Handler_dropdown)) {
 	$Qry .= " AND a.Handler = '$get_Handler_dropdown'";
 	}
-if (!empty($annual_mooth)) {	
+if (!empty($annual_month)) {	
 	$Qry .= " AND a.estimated_arrival_date BETWEEN '$start' AND '$end'";
 	}
 $Qry .="ORDER BY a.auto_seq";
@@ -481,7 +481,7 @@ $show_report=<<<EOT
 		<div class="col-auto">
 			<div class="form-label fw-bold">預計進場月份：</div>
 			<div class="input-group" id="annualyear" style="max-width: 180px;">
-				<input type="text" class="form-control" id="annual_mooth" name="annual annual_mooth" placeholder="請輸入年份" value="$annual_mooth">
+				<input type="text" class="form-control" id="annual_month" name="annual annual_month" placeholder="請輸入年份" value="$annual_month">
 				<button class="btn btn-outline-secondary" type="button" data-target="#annualyear" data-toggle="datetimepicker">
 					<i class="bi bi-calendar"></i>
 				</button>
@@ -548,31 +548,31 @@ $show_report
 
 function caseselect() {
 	var region = $('#region').val();
-	var builder_id = $('#builder_id').val();
-	var contractor_id = $('#contractor_id').val();
+	
+	
 	var ContractingModel = $('#ContractingModel').val();
 	var Handler = $('#Handler').val();
-	var annual_mooth = $('#annual_mooth').val();
+	var annual_month = $('#annual_month').val();
 
 	const newUrl = '/index.php?ch=$ch&fm=$fm'
 					  + '&region=' + region
-					  + '&builder_id=' + builder_id
-					  + '&contractor_id=' + contractor_id
+					 
+					
 					  + '&ContractingModel=' + ContractingModel
 					  + '&Handler=' + Handler
-					  + '&annual_mooth=' + annual_mooth;
+					  + '&annual_month=' + annual_month;
 
 	// 導向查詢（保留參數查資料）
 	window.location.href = newUrl;
 
 	// 接著在載入後使用 JS 清掉 input 顯示
 	// 加在頁面載入後：
-	// $('#annual_mooth').val('');
+	// $('#annual_month').val('');
 }
 
 $(function() {
     // 頁面載入完就清掉
-    $('#annual_mooth').val('');
+    $('#annual_month').val('');
 });
 	</script>
 EOT;

@@ -593,16 +593,14 @@ $show_report
 
 function caseselect() {
 	var region = $('#region').val();
-	var builder_id = $('#builder_id').val();
-	var contractor_id = $('#contractor_id').val();
+	
 	var ContractingModel = $('#ContractingModel').val();
 	var Handler = $('#Handler').val();
 	var annual_mooth = $('#annual_mooth').val();
 
 	const newUrl = '/index.php?ch=$ch&fm=$fm'
 					  + '&region=' + region
-					  + '&builder_id=' + builder_id
-					  + '&contractor_id=' + contractor_id
+					 
 					  + '&ContractingModel=' + ContractingModel
 					  + '&Handler=' + Handler
 					  + '&annual_mooth=' + annual_mooth;
